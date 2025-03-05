@@ -5,7 +5,10 @@ module.exports = withNativeFederation({
   name: 'microfrontend-clients',
 
   exposes: {
-    './Component': './src/app/pages/home/home.component.ts',
+    './Clients': './src/app/pages/clients/clients.component.ts',
+    './SelectedClients': './src/app/pages/selected-clients/selected-clients.component.ts',
+    './Home': './src/app/pages/home/home.component.ts',
+
   },
 
   shared: {
