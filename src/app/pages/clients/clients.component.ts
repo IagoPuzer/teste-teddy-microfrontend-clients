@@ -6,6 +6,7 @@ import { UsersService } from '../../services/users.service';
 import { Client, responseClients } from '../../models/client.model';
 import { ClientFormComponent } from '../../components/client-form/client-form.component';
 import { from } from 'rxjs';
+import { ClientsStateService } from '../../states/clients-state.service';
 
 @Component({
   selector: 'app-clients',
@@ -25,7 +26,10 @@ export class ClientsComponent implements OnInit {
   isUpdateModalVisible: boolean = false;
   selectedClient: Client | null = null;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private clientsStateService: ClientsStateService
+  ) {}
 
   ngOnInit() {
     this.loadClients();
@@ -128,5 +132,9 @@ export class ClientsComponent implements OnInit {
         console.error('Error updating user in component:', error);
       },
     });
+  }
+
+  saveClientToState(client: Client) {
+    this.clientsStateService.saveClient(client);
   }
 }
