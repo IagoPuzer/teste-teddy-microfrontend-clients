@@ -7,11 +7,18 @@ import { Client, responseClients } from '../../models/client.model';
 import { ClientFormComponent } from '../../components/client-form/client-form.component';
 import { from } from 'rxjs';
 import { ClientsStateService } from '../../states/clients-state.service';
+import { PaginationComponent } from '../../components/pagination/pagination.component';
 
 @Component({
   selector: 'app-clients',
   standalone: true,
-  imports: [CommonModule, ModalComponent, CardComponent, ClientFormComponent],
+  imports: [
+    CommonModule,
+    ModalComponent,
+    CardComponent,
+    ClientFormComponent,
+    PaginationComponent,
+  ],
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css'],
 })
@@ -35,8 +42,8 @@ export class ClientsComponent implements OnInit {
     this.loadClients();
   }
 
-  loadClients() {
-    from(this.usersService.getUsers(this.currentPage)).subscribe({
+  loadClients(page: number = this.currentPage) {
+    from(this.usersService.getUsers(page)).subscribe({
       next: (response: responseClients) => {
         this.clients = response.clients;
         this.currentPage = response.currentPage;
