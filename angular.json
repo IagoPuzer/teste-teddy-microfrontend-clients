@@ -18,11 +18,10 @@
 							"target": "microfrontend-clients:esbuild:production"
 						},
 						"development": {
-							"target": "microfrontend-clients:esbuild:development",
-							"dev": true
+							"target": "microfrontend-clients:esbuild:development"
 						}
 					},
-					"defaultConfiguration": "production"
+					"defaultConfiguration": "development"
 				},
 				"serve": {
 					"builder": "@angular-architects/native-federation:build",
