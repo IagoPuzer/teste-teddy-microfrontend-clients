@@ -22,7 +22,7 @@
 							"dev": true
 						}
 					},
-					"defaultConfiguration": "development"
+					"defaultConfiguration": "production"
 				},
 				"serve": {
 					"builder": "@angular-architects/native-federation:build",
