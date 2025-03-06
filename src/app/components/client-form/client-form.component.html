@@ -1,0 +1,41 @@
+<form class="d-flex flex-column align-items-start gap-3" [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    class="form-control"
+    id="name"
+    formControlName="name"
+    placeholder="Digite o nome"
+  />
+  @if (clientForm.get('name')?.invalid && (clientForm.get('name')?.touched || clientForm.get('name')?.dirty)) {
+    <div class="text-danger">Nome é obrigatório!</div>
+  }
+
+  <input
+    type="text"
+    class="form-control"
+    id="salary"
+    formControlName="salary"
+    placeholder="Digite o salário"
+  />
+  @if (clientForm.get('salary')?.invalid && (clientForm.get('salary')?.touched || clientForm.get('salary')?.dirty)) {
+    <div class="text-danger">Salário é obrigatório!</div>
+  }
+
+  <input
+    type="text"
+    class="form-control"
+    id="companyValuation"
+    formControlName="companyValuation"
+    placeholder="Digite o valor da empresa"
+  />
+  @if (clientForm.get('companyValuation')?.invalid && (clientForm.get('companyValuation')?.touched || clientForm.get('companyValuation')?.dirty)) {
+    <div class="text-danger">Valor da empresa é obrigatória!</div>
+  }
+
+  <button
+    type="submit"
+    class="btn btn-primary btn-block w-100 btn-custom"
+  >
+    Salvar
+  </button>
+</form>
