@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { responseClients } from '../models/client.model';
+import { Client, responseClients } from '../models/client.model';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,40 +10,77 @@ export class UsersService {
 
   constructor() {}
 
-  async getUsers(page: number, limit: number = 10): Promise<responseClients> {
-    return await fetch(`${this.baseApiUrl}/users?page=${page}&limit=${limit}`, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
+  getUsers(page: number, limit: number = 10): Observable<responseClients> {
+    return from(
+      fetch(`${this.baseApiUrl}/users?page=${page}&limit=${limit}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
         return response.json();
       })
-      .catch((error) => {
-        console.error('Error fetching users:', error);
-        throw error;
-      });
+    );
   }
 
-  async deleteUser(id: number): Promise<void> {
-    return await fetch(`${this.baseApiUrl}/users/${id}`, {
-      method: 'DELETE',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((response) => {
+  deleteUser(id: number): Observable<void> {
+    return from(
+      fetch(`${this.baseApiUrl}/users/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      }).then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
       })
-      .catch((error) => {
-        console.error('Error deleting user:', error);
-        throw error;
-      });
+    );
+  }
+
+  createUser(
+    name: string,
+    salary: number,
+    companyValuation: number
+  ): Observable<Client> {
+    return from(
+      fetch(`${this.baseApiUrl}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, salary, companyValuation }),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+    );
+  }
+
+  updateUser(
+    id: number,
+    name: string,
+    salary: number,
+    companyValuation: number
+  ): Observable<Client> {
+    return from(
+      fetch(`${this.baseApiUrl}/users/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, salary, companyValuation }),
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+    );
   }
 }
