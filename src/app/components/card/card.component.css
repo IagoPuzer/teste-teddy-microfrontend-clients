@@ -19,11 +19,6 @@
   margin-bottom: 16px;
 }
 
-.card-footer {
-  display: flex;
-  justify-content: space-around;
-}
-
 .fixed-size {
   width: 300px;
   height: 350px;
