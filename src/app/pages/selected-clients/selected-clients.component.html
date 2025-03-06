@@ -7,27 +7,33 @@
     <button class="btn btn-primary custom-button" (click)="clearSelectedClients()">Limpar clientes selecionado</button>
   </div>
   <div class="row">
-    @for (client of selectedClients; track client.id) {
-    <div
-      class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex justify-content-center"
-    >
-      <app-card>
-        <div card-header>
-          <p class="fs-3 mb-0">{{client.name}}</p>
+    @if (selectedClients.length === 0) {
+      <div class="col-12 text-center mt-4">
+        <p class="alert text-white">Você não possui clientes selecionados.</p>
+      </div>
+    } @else {
+      @for (client of selectedClients; track client.id) {
+        <div
+          class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex justify-content-center"
+        >
+          <app-card>
+            <div card-header>
+              <p class="fs-3 mb-0">{{client.name}}</p>
+            </div>
+            <div card-body>
+              <p>Salário: {{ client.salary | currency:'BRL':'symbol':'1.2-2' }}</p>
+              <p>Empresa: {{ client.companyValuation | currency:'BRL':'symbol':'1.2-2' }}</p>
+            </div>
+            <div card-footer class="d-flex justify-content-between">
+              <button class="btn-icon" (click)="removeClient(client)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
+                </svg>
+              </button>
+            </div>
+          </app-card>
         </div>
-        <div card-body>
-          <p>Salário: R${{client.salary}}</p>
-          <p>Empresa: R${{client.companyValuation}}</p>
-        </div>
-        <div card-footer class="d-flex justify-content-between">
-          <button class="btn-icon" (click)="removeClient(client)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">
-              <path fill-rule="evenodd" d="M2 8a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11A.5.5 0 0 1 2 8"/>
-            </svg>
-          </button>
-        </div>
-      </app-card>
-    </div>
+      }
     }
   </div>
 </div>

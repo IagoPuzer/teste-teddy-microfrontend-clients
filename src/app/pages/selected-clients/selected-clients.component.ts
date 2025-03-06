@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ClientsStateService } from '../../states/clients-state.service';
 import { Client } from '../../models/client.model';
 import { CardComponent } from '../../components/card/card.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-selected-clients',
   templateUrl: './selected-clients.component.html',
   styleUrls: ['./selected-clients.component.css'],
-  imports: [CardComponent],
+  imports: [CommonModule, CardComponent],
 })
 export class SelectedClientsComponent implements OnInit {
   selectedClients: Client[] = [];

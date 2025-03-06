@@ -1,4 +1,4 @@
-<div class="d-flex flex-column align-items-center">
+<div>
   <div class="w-100 d-flex justify-content-between align-items-center">
     <p>
       <span class="fw-bold fs-4">{{ this.clients.length }} </span>Clientes
@@ -7,6 +7,11 @@
     <button class="btn btn-primary custom-button" (click)="openCreateClientModal()">Criar Cliente</button>
   </div>
   <div class="row">
+    @if(this.clients.length === 0) {
+      <div class="col-12 text-center mt-4">
+        <p class="alert text-white">Você não possui clientes cadastrados.</p>
+      </div>
+    } @else {
     @for (client of clients; track client.id) {
     <div
       class="col-12 col-md-6 col-lg-4 col-xxl-3 mb-4 d-flex justify-content-center"
@@ -16,8 +21,8 @@
           <p class="fs-3 mb-0">{{client.name}}</p>
         </div>
         <div card-body>
-          <p>Salário: R${{client.salary}}</p>
-          <p>Empresa: R${{client.companyValuation}}</p>
+          <p>Salário: {{ client.salary | currency:'BRL':'symbol':'1.2-2' }}</p>
+          <p>Empresa: {{ client.companyValuation | currency:'BRL':'symbol':'1.2-2' }}</p>
         </div>
         <div card-footer class="d-flex justify-content-between">
           <button class="btn-icon" (click)="saveClientToState(client)">
@@ -40,6 +45,7 @@
       </app-card>
     </div>
     }
+  }
   </div>
 
   <app-modal [isVisible]="isDeleteModalVisible" (close)="closeModal()">
