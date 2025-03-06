@@ -3,8 +3,6 @@ export interface Client {
   name: string;
   companyValuation: number;
   salary: number;
-  createdAt: string;
-  updatedAt: string;
 }
 
 export interface responseClients {

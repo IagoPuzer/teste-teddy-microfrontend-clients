@@ -43,13 +43,17 @@ export class ClientsComponent {
     this.selectedClient = null;
   }
 
-  deleteClient() {
+  async deleteClient() {
     if (this.selectedClient) {
-      // Lógica para deletar o cliente
-      this.clients = this.clients.filter(
-        (client) => client !== this.selectedClient
-      );
-      this.closeModal();
+      try {
+        await this.usersService.deleteUser(this.selectedClient.id);
+        this.clients = this.clients.filter(
+          (client) => client !== this.selectedClient
+        );
+        this.closeModal();
+      } catch (error) {
+        console.error('Error deleting user in component:', error);
+      }
     }
   }
 }

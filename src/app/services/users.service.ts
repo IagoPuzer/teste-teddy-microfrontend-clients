@@ -27,4 +27,22 @@ export class UsersService {
         throw error;
       });
   }
+
+  async deleteUser(id: number): Promise<void> {
+    return await fetch(`${this.baseApiUrl}/users/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+      })
+      .catch((error) => {
+        console.error('Error deleting user:', error);
+        throw error;
+      });
+  }
 }
