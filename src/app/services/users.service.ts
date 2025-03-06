@@ -7,7 +7,7 @@ export class UsersService {
   constructor() {}
 
   async getUsers(): Promise<any> {
-    return await fetch('/users', {
+    return await fetch('https://boasorte.teddybackoffice.com.br/users', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
