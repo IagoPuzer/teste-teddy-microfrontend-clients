@@ -6,3 +6,9 @@ export interface Client {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface responseClients {
+  clients: Client[];
+  currentPage: number;
+  totalPages: number;
+}

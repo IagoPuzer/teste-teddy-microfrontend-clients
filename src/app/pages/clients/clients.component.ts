@@ -14,16 +14,17 @@ import { Client } from '../../models/client.model';
 })
 export class ClientsComponent {
   clients: Client[] = [];
-  currentPage: number = 0;
-  totalPages: number = 0;
+  currentPage: number = 1;
+  totalPages: number = 1;
   isModalVisible: boolean = false;
   selectedClient: Client | null = null;
+  usersService = new UsersService();
 
-  constructor(private usersService: UsersService) {}
+  constructor() {}
 
   async ngOnInit() {
     try {
-      const response = await this.usersService.getUsers();
+      const response = await this.usersService.getUsers(this.currentPage);
       this.clients = response.clients;
       this.currentPage = response.currentPage;
       this.totalPages = response.totalPages;
