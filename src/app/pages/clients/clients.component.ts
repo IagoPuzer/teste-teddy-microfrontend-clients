@@ -81,11 +81,11 @@ export class ClientsComponent implements OnInit {
 
   handleDeleteClient() {
     if (this.selectedClient) {
-      from(this.usersService.deleteUser(this.selectedClient.id)).subscribe({
+      const clientToDelete = this.selectedClient;
+      from(this.usersService.deleteUser(clientToDelete.id)).subscribe({
         next: () => {
-          this.clients = this.clients.filter(
-            (client) => client !== this.selectedClient
-          );
+          this.loadClients();
+          this.clientsStateService.removeClient(clientToDelete); // Remover do clientsStateService
           this.closeModal();
           this.toast.success('Cliente deletado com sucesso!');
         },
