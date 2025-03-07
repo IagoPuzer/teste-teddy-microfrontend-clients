@@ -35,6 +35,10 @@ export class ClientsStateService {
     localStorage.removeItem('clients');
   }
 
+  isClientSaved(client: Client): boolean {
+    return this.clients.some((c) => c.id === client.id);
+  }
+
   private updateLocalStorage() {
     localStorage.setItem('clients', JSON.stringify(this.clients));
   }

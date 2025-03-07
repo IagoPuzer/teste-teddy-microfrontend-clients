@@ -153,4 +153,13 @@ export class ClientsComponent implements OnInit {
     this.clientsStateService.saveClient(client);
     this.toast.success('Cliente salvo com sucesso!');
   }
+
+  isClientSaved(client: Client): boolean {
+    return this.clientsStateService.isClientSaved(client);
+  }
+
+  removeClientFromState(client: Client) {
+    this.clientsStateService.removeClient(client);
+    this.toast.success('Cliente removido dos selecionados com sucesso!');
+  }
 }
