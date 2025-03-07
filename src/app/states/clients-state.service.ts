@@ -15,7 +15,7 @@ export class ClientsStateService {
   }
 
   saveClient(client: Client) {
-    if (!this.clients.some((c) => c.id === client.id)) {
+    if (!this.clients.some((clientItem) => clientItem.id === client.id)) {
       this.clients.push(client);
       this.updateLocalStorage();
     }
@@ -26,7 +26,9 @@ export class ClientsStateService {
   }
 
   removeClient(client: Client) {
-    this.clients = this.clients.filter((c) => c.id !== client.id);
+    this.clients = this.clients.filter(
+      (clientItem) => clientItem.id !== client.id
+    );
     this.updateLocalStorage();
   }
 
@@ -36,7 +38,7 @@ export class ClientsStateService {
   }
 
   isClientSaved(client: Client): boolean {
-    return this.clients.some((c) => c.id === client.id);
+    return this.clients.some((clientItem) => clientItem.id === client.id);
   }
 
   private updateLocalStorage() {
