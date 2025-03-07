@@ -8,6 +8,7 @@ import { ClientFormComponent } from '../../components/client-form/client-form.co
 import { from } from 'rxjs';
 import { ClientsStateService } from '../../states/clients-state.service';
 import { PaginationComponent } from '../../components/pagination/pagination.component';
+import { HotToastService } from '@ngxpert/hot-toast';
 
 @Component({
   selector: 'app-clients',
@@ -35,7 +36,8 @@ export class ClientsComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private clientsStateService: ClientsStateService
+    private clientsStateService: ClientsStateService,
+    private toast: HotToastService
   ) {}
 
   ngOnInit() {
@@ -85,8 +87,10 @@ export class ClientsComponent implements OnInit {
             (client) => client !== this.selectedClient
           );
           this.closeModal();
+          this.toast.success('Cliente deletado com sucesso!');
         },
         error: (error) => {
+          this.toast.error('Erro ao deletar cliente!');
           console.error('Error deleting user in component:', error);
         },
       });
@@ -109,8 +113,10 @@ export class ClientsComponent implements OnInit {
         this.isCreateModalVisible = false;
         this.clientFormComponent.clientForm.reset();
         this.loadClients();
+        this.toast.success('Cliente criado com sucesso!');
       },
       error: (error) => {
+        this.toast.error('Erro ao criar cliente!');
         console.error('Error creating user in component:', error);
       },
     });
@@ -134,8 +140,10 @@ export class ClientsComponent implements OnInit {
         this.isUpdateModalVisible = false;
         this.clientFormComponent.clientForm.reset();
         this.loadClients();
+        this.toast.success('Cliente atualizado com sucesso!');
       },
       error: (error) => {
+        this.toast.error('Erro ao atualizar cliente!');
         console.error('Error updating user in component:', error);
       },
     });
@@ -143,5 +151,6 @@ export class ClientsComponent implements OnInit {
 
   saveClientToState(client: Client) {
     this.clientsStateService.saveClient(client);
+    this.toast.success('Cliente salvo com sucesso!');
   }
 }
