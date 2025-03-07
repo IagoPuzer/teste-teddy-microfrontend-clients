@@ -1,41 +1,93 @@
-# Microfrontend Clients
+# 🏗️ Microfrontend Clients
 
-Este projeto é um microfrontend desenvolvido utilizando [Angular CLI](https://github.com/angular/angular-cli) versão 19.2.0. Microfrontends são uma abordagem para dividir uma aplicação frontend monolítica em unidades menores e mais gerenciáveis, que podem ser desenvolvidas, testadas e implantadas de forma independente.
+Este projeto é um **microfrontend** desenvolvido utilizando [Angular CLI](https://github.com/angular/angular-cli) versão **19.2.0**.
 
-## 📋 Detalhes da Aplicação
+Microfrontends permitem dividir uma aplicação frontend monolítica em **unidades menores e independentes**, facilitando o desenvolvimento, testes e implantação modular.
 
-Esta aplicação é responsável por gerenciar clientes em um ambiente de microfrontends. Ela inclui componentes como:
+## 📋 Sobre a Aplicação
 
-- Formulários de cliente para adicionar e editar informações de clientes
-- Cards de cliente para exibir informações resumidas de cada cliente
-- Modais para confirmação de ações e exibição de detalhes adicionais
-- Paginação para navegação eficiente entre listas de clientes
+Este microfrontend é responsável pela **gestão de clientes** dentro da arquitetura de microfrontends. Ele inclui funcionalidades como:
 
-A aplicação também possui serviços para gerenciar o estado dos clientes e se comunicar com APIs externas, garantindo que os dados estejam sempre atualizados e sincronizados.
+✔️ **Formulários de Cliente** – Adicionar e editar informações dos clientes.  
+✔️ **Cards de Cliente** – Exibir informações resumidas de cada cliente.  
+✔️ **Modais Interativos** – Para confirmação de ações e exibição de detalhes adicionais.  
+✔️ **Paginação Dinâmica** – Para navegação eficiente entre listas de clientes.  
+✔️ **Serviços de API** – Comunicação com APIs externas para manter os dados sincronizados.
 
-### Principais Pacotes Utilizados
+### 📦 Principais Dependências
 
-- Angular: 19.2.0
-- RxJS: 7.5.0
-- Bootstrap: 5.1.3
-- NgRx: 14.0.0
+- **Angular**: 19.2.0
+- **RxJS**: 7.5.0
+- **Bootstrap**: 5.1.3
+- **NgRx**: 14.0.0
 
-## 🚀 Servidor de Desenvolvimento
+## 🚀 Executando o Servidor de Desenvolvimento
 
-Para iniciar um servidor de desenvolvimento local, execute:
+### 1️⃣ Instale as dependências
+
+Antes de rodar o projeto, instale as dependências necessárias:
+
+```bash
+npm install
+```
+
+### 2️⃣ Inicie o servidor
+
+Para rodar a aplicação localmente, utilize:
 
 ```bash
 ng serve
 ```
 
-Uma vez que o servidor esteja em execução, abra seu navegador e navegue até `http://localhost:4202/`. A aplicação será recarregada automaticamente sempre que você modificar qualquer um dos arquivos fonte.
+Depois, acesse pelo navegador:
+
+🔗 [http://localhost:4202/](http://localhost:4202/)
+
+A aplicação será recarregada automaticamente a cada modificação no código.
 
 ## 📦 Build
 
-Para compilar o projeto, execute:
+Para compilar o projeto para produção, execute:
 
 ```bash
 ng build
 ```
 
-Isso irá compilar o projeto e armazenar os artefatos de build no diretório `dist/`. Por padrão, o build de produção otimiza a aplicação para performance e velocidade.
+Os arquivos compilados serão gerados no diretório `dist/`, otimizados para **melhor performance e velocidade**.
+
+## 🐳 Executando com Docker
+
+A aplicação está **dockerizada**, permitindo sua execução sem necessidade de configurações manuais.
+
+### Criando e executando o container:
+
+```bash
+docker compose up --build
+```
+
+### Parando os containers:
+
+```bash
+docker compose down
+```
+
+## 🔗 Integração com o Host
+
+Este microfrontend **deve estar rodando** para que o host possa consumi-lo corretamente. O host pode ser encontrado no seguinte repositório:
+
+🔗 [https://github.com/IagoPuzer/teste-teddy-host](https://github.com/IagoPuzer/teste-teddy-host)
+
+Caso o host não consiga carregar o microfrontend, verifique se a configuração do arquivo `federation.manifest.json` está correta:
+
+```json
+{
+  "remoteEntry": "http://localhost:4202/remoteEntry.json"
+}
+```
+
+## 📝 Notas Importantes
+
+- Este microfrontend **não é um projeto independente** – ele precisa ser integrado ao host para funcionar corretamente.
+- Certifique-se de que a **porta 4202** está livre antes de rodar o servidor local.
+- Se houver problemas no carregamento, confira se os serviços do host e do microfrontend estão rodando corretamente.
+- Caso utilize **Docker**, garanta que as configurações de rede permitam a comunicação entre os containers.
