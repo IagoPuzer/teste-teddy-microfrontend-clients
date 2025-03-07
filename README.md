@@ -1,59 +1,49 @@
-# MicrofrontendClients
+# Microfrontend Clients
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.0.
+Este projeto é um microfrontend desenvolvido utilizando [Angular CLI](https://github.com/angular/angular-cli) versão 19.2.0. Microfrontends são uma abordagem para dividir uma aplicação frontend monolítica em unidades menores e mais gerenciáveis, que podem ser desenvolvidas, testadas e implantadas de forma independente.
 
-## Development server
+## 📋 Detalhes da Aplicação
 
-To start a local development server, run:
+Esta aplicação é responsável por gerenciar clientes em um ambiente de microfrontends. Ela inclui componentes como:
+
+- Formulários de cliente para adicionar e editar informações de clientes
+- Cards de cliente para exibir informações resumidas de cada cliente
+- Modais para confirmação de ações e exibição de detalhes adicionais
+- Paginação para navegação eficiente entre listas de clientes
+
+A aplicação também possui serviços para gerenciar o estado dos clientes e se comunicar com APIs externas, garantindo que os dados estejam sempre atualizados e sincronizados.
+
+### Principais Pacotes Utilizados
+
+- Angular: 19.2.0
+- RxJS: 7.5.0
+- Bootstrap: 5.1.3
+- NgRx: 14.0.0
+
+## 🚀 Servidor de Desenvolvimento
+
+Para iniciar um servidor de desenvolvimento local, execute:
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Uma vez que o servidor esteja em execução, abra seu navegador e navegue até `http://localhost:4202/`. A aplicação será recarregada automaticamente sempre que você modificar qualquer um dos arquivos fonte.
 
-## Code scaffolding
+## 📦 Build
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Para compilar o projeto, execute:
 
 ```bash
 ng build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Isso irá compilar o projeto e armazenar os artefatos de build no diretório `dist/`. Por padrão, o build de produção otimiza a aplicação para performance e velocidade.
 
-## Running unit tests
+## Executando Testes Unitários
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Para executar testes unitários com o [Karma](https://karma-runner.github.io), use o seguinte comando:
 
 ```bash
 ng test
 ```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
