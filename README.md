@@ -1,69 +1,83 @@
-# 🖥️ Microfrontend Clients
+# 🏗️ Microfrontend Clients
 
 Este projeto é um **microfrontend** desenvolvido utilizando [Angular CLI](https://github.com/angular/angular-cli) versão **19.2.0**.
 
-Microfrontends são uma abordagem para dividir uma aplicação frontend monolítica em unidades menores e mais gerenciáveis, permitindo que cada parte seja desenvolvida, testada e implantada de forma independente.
+Microfrontends permitem dividir uma aplicação frontend monolítica em **unidades menores e independentes**, facilitando o desenvolvimento, testes e implantação modular.
 
 ## 📋 Sobre a Aplicação
 
-Esta aplicação é responsável pelo gerenciamento de **clientes** dentro de um ambiente de microfrontends.
+Este microfrontend é responsável pela **gestão de clientes** dentro da arquitetura de microfrontends. Ele inclui funcionalidades como:
 
-### 📌 Funcionalidades Principais
+✔️ **Formulários de Cliente** – Adicionar e editar informações dos clientes.  
+✔️ **Cards de Cliente** – Exibir informações resumidas de cada cliente.  
+✔️ **Modais Interativos** – Para confirmação de ações e exibição de detalhes adicionais.  
+✔️ **Paginação Dinâmica** – Para navegação eficiente entre listas de clientes.  
+✔️ **Serviços de API** – Comunicação com APIs externas para manter os dados sincronizados.
 
-- 📄 **Formulários** para adicionar e editar clientes
-- 🗂 **Cards interativos** para exibição de informações resumidas
-- 🔍 **Modais** para ações de confirmação e exibição de detalhes
-- 📑 **Paginação** para navegação eficiente na lista de clientes
-- 🔄 **Integração com APIs** para manter os dados sempre sincronizados
-
-### 🛠 Tecnologias Utilizadas
+### 📦 Principais Dependências
 
 - **Angular**: 19.2.0
 - **RxJS**: 7.5.0
 - **Bootstrap**: 5.1.3
 - **NgRx**: 14.0.0
 
-## 📦 Instalação
+## 🚀 Executando o Servidor de Desenvolvimento
 
-Antes de rodar o projeto, instale as dependências:
+### 1️⃣ Instale as dependências
+
+Antes de rodar o projeto, instale as dependências necessárias:
 
 ```bash
 npm install
 ```
 
-## 🚀 Executando o Servidor de Desenvolvimento
+### 2️⃣ Inicie o servidor
 
-Para iniciar a aplicação localmente, execute:
+Para rodar a aplicação localmente, utilize:
 
 ```bash
 ng serve
 ```
 
-Acesse no navegador:
+Depois, acesse pelo navegador:
 
 🔗 [http://localhost:4202/](http://localhost:4202/)
 
-A aplicação será recarregada automaticamente sempre que houver modificações no código-fonte.
+A aplicação será recarregada automaticamente a cada modificação no código.
 
-## 📦 Build
+## 🐳 Executando com Docker
 
-Para compilar o projeto, execute:
+A aplicação está **dockerizada**, permitindo sua execução sem necessidade de configurações manuais.
+
+### Criando e executando o container:
 
 ```bash
-ng build
+docker compose up
 ```
 
-Isso gerará os arquivos de build dentro do diretório `dist/`, otimizados para produção.
+### Parando os containers:
 
-## 🏠 Integração com o Host
+```bash
+docker compose down
+```
 
-Para que o microfrontend funcione corretamente, o **host** da aplicação também precisa estar rodando.
+## 🔗 Integração com o Host
 
-🔗 [Repositório do Host](https://github.com/IagoPuzer/teste-teddy-host)
+Este microfrontend **deve estar rodando** para que o host possa consumi-lo corretamente. O host pode ser encontrado no seguinte repositório:
 
-Se o host não estiver em execução, os módulos remotos do microfrontend não serão carregados corretamente.
+🔗 [https://github.com/IagoPuzer/teste-teddy-host](https://github.com/IagoPuzer/teste-teddy-host)
 
-## 📝 Notas
+Caso o host não consiga carregar o microfrontend, verifique se a configuração do arquivo `federation.manifest.json` está correta:
 
-- Para rodar localmente, verifique se o host está configurado para carregar os módulos remotos do microfrontend.
-- Em produção, o microfrontend será carregado a partir da **Vercel**.
+```json
+{
+  "remoteEntry": "http://localhost:4202/remoteEntry.json"
+}
+```
+
+## 📝 Notas Importantes
+
+- Este microfrontend **não é um projeto independente** – ele precisa ser integrado ao host para funcionar corretamente.
+- Certifique-se de que a **porta 4202** está livre antes de rodar o servidor local.
+- Se houver problemas no carregamento, confira se os serviços do host e do microfrontend estão rodando corretamente.
+- Caso utilize **Docker**, garanta que as configurações de rede permitam a comunicação entre os containers.
