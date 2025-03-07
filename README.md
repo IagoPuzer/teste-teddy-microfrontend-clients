@@ -39,11 +39,3 @@ ng build
 ```
 
 Isso irá compilar o projeto e armazenar os artefatos de build no diretório `dist/`. Por padrão, o build de produção otimiza a aplicação para performance e velocidade.
-
-## Executando Testes Unitários
-
-Para executar testes unitários com o [Karma](https://karma-runner.github.io), use o seguinte comando:
-
-```bash
-ng test
-```
