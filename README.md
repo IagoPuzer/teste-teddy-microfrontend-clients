@@ -1,10 +1,31 @@
-# 🏠 Host - Microfrontend
+# 🖥️ Microfrontend Clients
 
-Este repositório serve como **host** para uma arquitetura de microfrontends. Ele é responsável por carregar dinamicamente os microfrontends e inclui **os layouts das aplicações e a página inicial de login**.
+Este projeto é um **microfrontend** desenvolvido utilizando [Angular CLI](https://github.com/angular/angular-cli) versão **19.2.0**.
+
+Microfrontends são uma abordagem para dividir uma aplicação frontend monolítica em unidades menores e mais gerenciáveis, permitindo que cada parte seja desenvolvida, testada e implantada de forma independente.
+
+## 📋 Sobre a Aplicação
+
+Esta aplicação é responsável pelo gerenciamento de **clientes** dentro de um ambiente de microfrontends.
+
+### 📌 Funcionalidades Principais
+
+- 📄 **Formulários** para adicionar e editar clientes
+- 🗂 **Cards interativos** para exibição de informações resumidas
+- 🔍 **Modais** para ações de confirmação e exibição de detalhes
+- 📑 **Paginação** para navegação eficiente na lista de clientes
+- 🔄 **Integração com APIs** para manter os dados sempre sincronizados
+
+### 🛠 Tecnologias Utilizadas
+
+- **Angular**: 19.2.0
+- **RxJS**: 7.5.0
+- **Bootstrap**: 5.1.3
+- **NgRx**: 14.0.0
 
 ## 📦 Instalação
 
-Antes de rodar o projeto, instale as dependências necessárias:
+Antes de rodar o projeto, instale as dependências:
 
 ```bash
 npm install
@@ -12,69 +33,37 @@ npm install
 
 ## 🚀 Executando o Servidor de Desenvolvimento
 
-Para iniciar o servidor localmente, execute:
+Para iniciar a aplicação localmente, execute:
 
 ```bash
 ng serve
 ```
 
-Depois, acesse no navegador:
+Acesse no navegador:
 
-🔗 [http://localhost:4200/](http://localhost:4200/)
+🔗 [http://localhost:4202/](http://localhost:4202/)
 
 A aplicação será recarregada automaticamente sempre que houver modificações no código-fonte.
 
-## ⚙️ Configuração para Desenvolvimento Local
+## 📦 Build
 
-Para rodar corretamente o microfrontend localmente, é necessário modificar o arquivo `federation.manifest.json`, localizado na pasta `public`.
-
-Altere a rota do microfrontend para o ambiente local:
-
-```json
-{
-  "mfe1": "http://localhost:4202/remoteEntry.json"
-}
-```
-
-⚠️ **Importante:** Não commite este arquivo!
-
-No ambiente de produção, o arquivo `federation.manifest.json` deve conter a URL do microfrontend hospedado na Vercel:
-
-```json
-{
-  "mfe1": "https://teste-teddy-microfrontend-clients.vercel.app/remoteEntry.json"
-}
-```
-
-Se este arquivo for commitado com a configuração local, o deploy na **Vercel** pode ser comprometido.
-
-## 🐳 Executando com Docker
-
-A aplicação está **dockerizada**, permitindo a execução de forma isolada.
-
-### Criando e executando o container:
+Para compilar o projeto, execute:
 
 ```bash
-docker compose up --build
+ng build
 ```
 
-### Parando os containers:
+Isso gerará os arquivos de build dentro do diretório `dist/`, otimizados para produção.
 
-```bash
-docker compose down
-```
+## 🏠 Integração com o Host
 
-## 🔗 Integração com o Microfrontend
+Para que o microfrontend funcione corretamente, o **host** da aplicação também precisa estar rodando.
 
-Para o host carregar corretamente o microfrontend, o repositório do **microfrontend clients** deve estar rodando simultaneamente.
+🔗 [Repositório do Host](https://github.com/IagoPuzer/teste-teddy-host)
 
-🔗 [https://github.com/IagoPuzer/teste-teddy-microfrontend-clients](https://github.com/IagoPuzer/teste-teddy-microfrontend-clients)
+Se o host não estiver em execução, os módulos remotos do microfrontend não serão carregados corretamente.
 
-Caso o microfrontend não esteja rodando, a aplicação host pode falhar ao carregar os componentes remotos.
+## 📝 Notas
 
-## 📝 Notas Importantes
-
-- **Não commite o arquivo `federation.manifest.json` com a configuração local.**
-- O microfrontend precisa estar rodando para que o host carregue corretamente.
-- Se houver problemas no carregamento, verifique se os serviços do host e do microfrontend estão rodando corretamente.
-- Caso utilize **Docker**, garanta que as configurações de rede permitam a comunicação entre os containers.
+- Para rodar localmente, verifique se o host está configurado para carregar os módulos remotos do microfrontend.
+- Em produção, o microfrontend será carregado a partir da **Vercel**.
