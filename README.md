@@ -49,6 +49,8 @@ A aplicação será recarregada automaticamente a cada modificação no código.
 
 A aplicação está **dockerizada**, permitindo sua execução sem necessidade de configurações manuais.
 
+**OBS**: Apesar de não apresentar nenhum erro aparante não é possivel acessar as rotas pelo docker, o Docker Container é criado normalmente porém não esta sendo feito o expose da imagem.
+
 ### Criando e executando o container:
 
 ```bash

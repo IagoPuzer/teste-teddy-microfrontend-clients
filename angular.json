@@ -30,8 +30,7 @@
           "options": {
             "target": "microfrontend-clients:serve-original:development",
             "rebuildDelay": 0,
-            "dev": true,
-            "port": 0
+            "dev": true
           }
         },
         "extract-i18n": {
